@@ -1,10 +1,12 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse,Http404
+from .models import pro_skills, Location, Nanny
 
 # Create your views here.
 def index(request):
+    nannies = Nanny.objects.all()
 
-    return render(request,'index.html')
+    return render(request,'index.html',{"nannies":nannies})
 
 def about(request):
 

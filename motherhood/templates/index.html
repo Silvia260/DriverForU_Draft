@@ -9,7 +9,6 @@
     <!-- MAIN -->
 
 
-
     <div class="slide-item" style="background-image: url('./static/images/slider-1.jpg')">
       <div class="container">
         <div class="row">
@@ -65,6 +64,26 @@
             </div>
           </div>
         </div>
+
+        <div class="row">
+
+          {%for nanny in nannies %}
+          <div class="col-6 col-sm-6 col-md-6 mb-4 mb-lg-0 col-lg-3">
+            <div class="service">
+              <a href="#" class="d-block"><img src="./static/images/img_4_sq.jpg" alt="Image" class="img-fluid"></a>
+              <div class="service-inner">
+                <h3>{{nanny.first_name}} {{nanny.last_name}}</h3>
+                <p>{{nanny.bio}}</p>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+
+
+        </div>
+
+
+
         <div class="row">
           <div class="col-6 col-sm-6 col-md-6 mb-4 mb-lg-0 col-lg-3">
             <div class="service">
@@ -103,6 +122,10 @@
             </div>
           </div>
         </div>
+
+
+
+
       </div>
     </div>
 
@@ -309,9 +332,6 @@
       </div>
     </div>
 
-
-  </div>
-</div> <!-- .site-wrap -->
 
 
 {% endblock %}
