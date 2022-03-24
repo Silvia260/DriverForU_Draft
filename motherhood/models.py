@@ -40,3 +40,7 @@ class Nanny(models.Model):
     phonenumber = models.IntegerField()
     featured = models.BooleanField(default=False)
     bio = models.CharField(blank=True, max_length=200)
+    image = models.ImageField(upload_to='images/', default='./static/images/img_10_sq')
+
+    def __str__(self):
+        return self.first_name

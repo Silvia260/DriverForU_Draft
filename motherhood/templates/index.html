@@ -68,59 +68,57 @@
         <div class="row">
 
           {%for nanny in nannies %}
-          <div class="col-6 col-sm-6 col-md-6 mb-4 mb-lg-0 col-lg-3">
+
+          <div class="col-6 col-sm-6 col-md-6 mb-4 mb-lg-0 col-lg-3" >
+            <a href="#" class="d-block"  data-toggle="modal" data-target="#nanny">
+
             <div class="service">
-              <a href="#" class="d-block"><img src="./static/images/img_4_sq.jpg" alt="Image" class="img-fluid"></a>
+              <!-- <a href="#" class="d-block">
+
+              </a> -->
+              <img src="{{nanny.image.url}}" alt="Image" class="img-fluid">
               <div class="service-inner">
                 <h3>{{nanny.first_name}} {{nanny.last_name}}</h3>
                 <p>{{nanny.bio}}</p>
+
               </div>
             </div>
+          </a>
+
           </div>
+
+          <!-- Modal  -->
+            <div class="modal fade" id="nanny" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-body" style="padding-top: 0em;">
+                    <div class="row">
+                        <div class="service">
+                          <a href="#" class="d-block"><img src="{{nanny.image.url}}" alt="Image" class="img-fluid"></a>
+                          <div class="service-inner">
+                            <h3>{{nanny.first_name}} {{nanny.last_name}}</h3>
+                            <p>Age: {{nanny.age}}</p>
+                            <p>Location: {{nanny.location}}</p>
+                            <p>Rate: {{nanny.rate}}ksh/hour</p>
+
+                          </div>
+                      </div>
+                      </div>
+
+
+
+                        </div>
+                  </div>
+
+                </div>
+              </div>
+
+          <!-- End of Modal -->
+
+
           {% endfor %}
 
 
-        </div>
-
-
-
-        <div class="row">
-          <div class="col-6 col-sm-6 col-md-6 mb-4 mb-lg-0 col-lg-3">
-            <div class="service">
-              <a href="#" class="d-block"><img src="./static/images/img_4_sq.jpg" alt="Image" class="img-fluid"></a>
-              <div class="service-inner">
-                <h3>Michelle Naliaka</h3>
-                <p>5 years work experience under Upscale Motherhood.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-6 col-sm-6 col-md-6 mb-4 mb-lg-0 col-lg-3">
-            <div class="service">
-              <a href="#" class="d-block"><img src="./static/images/img_1_sq.jpg" alt="Image" class="img-fluid"></a>
-              <div class="service-inner">
-                <h3>Joy Wairimu</h3>
-                <p>Nanny of the year '21, Loved and Cherished by All.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-6 col-sm-6 col-md-6 mb-4 mb-lg-0 col-lg-3">
-            <div class="service">
-              <a href="#" class="d-block"><img src="./static/images/img_2_sq.jpg" alt="Image" class="img-fluid"></a>
-              <div class="service-inner">
-                <h3>Brenda Chepkoech</h3>
-                <p>2 years of Exemplerary Nanny Services Under UPM.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-6 col-sm-6 col-md-6 mb-4 mb-lg-0 col-lg-3">
-            <div class="service">
-              <a href="#" class="d-block"><img src="./static/images/img_3_sq.jpg" alt="Image" class="img-fluid"></a>
-              <div class="service-inner">
-                <h3>Mercy Ng'endo</h3>
-                <p>Consistent in her duties and brilliant with kids.</p>
-              </div>
-            </div>
-          </div>
         </div>
 
 
@@ -288,6 +286,37 @@
       </div>
     </div>
   </div>
+
+
+<!-- Modal  -->
+  <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times  </button>
+          <h3 class="modal-title" id="myModalLabel">Request a Quote</h3>
+        </div>
+
+        <div class="modal-body">
+          <div class="row">
+              <div class="service">
+                <a href="#" class="d-block"><img src="./static/images/img_4_sq.jpg" alt="Image" class="img-fluid"></a>
+                <div class="service-inner">
+                  <h3>Michelle Naliaka</h3>
+                  <p>5 years work experience under Upscale Motherhood.</p>
+                </div>
+            </div>
+            </div>
+
+
+
+              </div>
+        </div>
+
+      </div>
+    </div>
+
+<!-- End of Modal -->
 
 
 

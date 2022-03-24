@@ -56,9 +56,20 @@
                 <li><a href="{% url 'about' %}" class="nav-link">About</a></li>
                 <li><a href="{% url 'contact' %}" class="nav-link">Contact</a></li>
 
-                <li class="social"><a href="#contact-section" class="nav-link"><span class="icon-facebook"></span></a></li>
-                <li class="social"><a href="#contact-section" class="nav-link"><span class="icon-twitter"></span></a></li>
-                <li class="social"><a href="#contact-section" class="nav-link"><span class="icon-linkedin"></span></a></li>
+                {% if user.is_authenticated %}
+                <li class="has-children">
+                  <a href="#" class="nav-link">Account</a>
+                  <ul class="dropdown">
+                    <li><a href="/accounts/password/change" class="nav-link">Change Password</a></li>
+                  </ul>
+                </li>
+                <li><a href="/logout" class="nav-link">Logout</a></li>
+                {% else %}
+
+                <li><a href="/accounts/login" class="nav-link">Login</a></li>
+
+                {% endif %}
+
               </ul>
             </nav>
           </div>
