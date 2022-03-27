@@ -156,3 +156,6 @@ django_heroku.settings(locals())
 
 # url to redirect after successfull login
 LOGIN_REDIRECT_URL = '/'
+
+#Email Backend settings
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

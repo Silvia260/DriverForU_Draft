@@ -22,8 +22,47 @@
     </div>
 
 
+        <div class="site-section">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-8 mb-5">
+                <form method="post">
+                  {%csrf_token%}
+                    {{form.as_p}}
 
 
+
+
+
+                  <div class="row form-group">
+                    <div class="col-md-12">
+                      <input type="submit" value="Upscale Motherhood Inquiry" class="btn btn-primary text-white">
+                    </div>
+                  </div>
+
+
+                </form>
+              </div>
+              <div class="col-lg-3 ml-auto">
+                <div class="mb-3">
+                  <p class="mb-0 font-weight-bold text-black">Address</p>
+                  <p class="mb-4">PWC Tower, Ground Floor, Delta Corner Estate, Chiromo Road, Nairobi</p>
+
+                  <p class="mb-0 font-weight-bold text-black">Phone</p>
+                  <p class="mb-4"><a href="#">+254-702-456421</a></p>
+
+                  <p class="mb-0 font-weight-bold text-black">Email Address</p>
+                  <p class="mb-0"><a href="#">contactus@upscalemotherhood.com</a></p>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+<!-- 
     <div class="site-section">
       <div class="container">
         <div class="row">
@@ -74,6 +113,8 @@
 
             </form>
           </div>
+
+
           <div class="col-lg-3 ml-auto">
             <div class="mb-3">
               <p class="mb-0 font-weight-bold text-black">Address</p>
@@ -90,7 +131,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
 
     <div class="site-footer bg-light">

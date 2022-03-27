@@ -22,50 +22,17 @@
       </div>
     </div>
 
+    {% if nannies %}
 
+    <h2> Found {{nannies|length}} nannies for the filtered terms "{{message}}"</h2>
 
+    {% else %}
 
-        <div class="site-section">
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-8 mb-5">
+    <h2> Found 0 nannies for the filtered terms "{{message}}"</h2>
 
-                <form class="navbar-form" role="search" action="{% url 'search_results' %}">
-                  <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search For Nanny" name="nanny">
-                  </div>
-                </form>
+    {% endif %}
 
-                <!-- <form role="search" action="{% url 'search_results' %}">
-
-
-
-                  <div class="row form-group">
-
-                    <div class="col-md-12">
-                      <label class="text-black" for="subject">Location</label>
-                      <input name="nanny" id="subject" class="form-control">
-                    </div>
-                  </div>
-
-
-
-                  <div class="row form-group">
-                    <div class="col-md-12">
-                      <input type="submit" name="nanny" class="btn btn-primary text-white">
-                    </div>
-                  </div>
-
-
-                </form> -->
-
-
-
-              </div>
-
-            </div>
-          </div>
-        </div>
+    {% if nannies %}
 
     <div class="site-section">
       <div class="container">
@@ -122,11 +89,12 @@
           {% endfor%}
 
 
+
         </div>
       </div>
     </div>
 
-
+  {% endif %}
 
 
 

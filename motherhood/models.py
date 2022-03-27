@@ -1,5 +1,7 @@
 from django.db import models
+from django.db.models import Q
 
+# Create your models here.
 class pro_skills(models.Model):
     pro_skills = models.CharField(max_length=100)
 
@@ -29,8 +31,9 @@ class Location(models.Model):
     def delete_location(cls,location):
         cls.objects.filter(location=location).delete()
 
-# Create your models here.
+
 class Nanny(models.Model):
+
     first_name = models.CharField(max_length=60)
     last_name = models.CharField(max_length=60)
     age = models.IntegerField(default=0)
@@ -44,3 +47,8 @@ class Nanny(models.Model):
 
     def __str__(self):
         return self.first_name
+
+    @classmethod
+    def filter_nannies(cls,search_term):
+        nannies = cls.objects.filter(Q(location__location=search_term) | Q(pro_skills__pro_skills=search_term))
+        return nannies

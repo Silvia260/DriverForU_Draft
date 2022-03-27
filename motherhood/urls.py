@@ -12,7 +12,9 @@ urlpatterns=[
     url(r'^pricing',views.pricing,name='pricing'),
     url(r'^services',views.services,name='services'),
     url(r'^testimonial',views.testimonial,name='testimonial'),
-    
+    url(r'^inquiry_received',views.inquiry_received,name='inquiry_received'),
+    url(r'^search/',views.search_results,name='search_results'),
+
 ]
 
 if settings.DEBUG:

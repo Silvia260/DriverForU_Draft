@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load staticfiles %}
+{% load bootstrap4 %}
 
 
 
@@ -55,6 +56,8 @@
     </div>
 
 
+
+
     <div class="site-section">
       <div class="container">
         <div class="row mb-5 justify-content-center">
@@ -70,7 +73,7 @@
           {%for nanny in nannies %}
 
           <div class="col-6 col-sm-6 col-md-6 mb-4 mb-lg-0 col-lg-3" >
-            <a href="#" class="d-block"  data-toggle="modal" data-target="#nanny">
+            <a href="#" class="d-block"  data-toggle="modal" data-target="#nanny-{{nanny.id}}">
 
             <div class="service">
               <!-- <a href="#" class="d-block">
@@ -87,8 +90,9 @@
 
           </div>
 
+
           <!-- Modal  -->
-            <div class="modal fade" id="nanny" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+            <div class="modal fade" id="nanny-{{nanny.id}}" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-body" style="padding-top: 0em;">
@@ -97,18 +101,28 @@
                           <a href="#" class="d-block"><img src="{{nanny.image.url}}" alt="Image" class="img-fluid"></a>
                           <div class="service-inner">
                             <h3>{{nanny.first_name}} {{nanny.last_name}}</h3>
-                            <p>Age: {{nanny.age}}</p>
-                            <p>Location: {{nanny.location}}</p>
-                            <p>Rate: {{nanny.rate}}ksh/hour</p>
-
+                            <h6>Age: {{nanny.age}}</h6>
+                            <h6>Location: {{nanny.location}}</h6>
+                            <h6>Rate: {{nanny.rate}} ksh/hour</h6>
+                            <h6>Professional Skills: {% for pro_skills in nanny.pro_skills.all %}
+                                {{pro_skills}},
+                              {% endfor %}
+                            </h6>
                           </div>
                       </div>
                       </div>
-
-
-
+                      <div class="modal-footer">
+                        <div class="inner" style="margin:0 auto;">
+                          <p><a href="contact.html" class="btn btn-primary">Book Nanny</a></p>
                         </div>
+
+                      </div>
+
+
+
+                      </div>
                   </div>
+
 
                 </div>
               </div>
@@ -126,6 +140,9 @@
 
       </div>
     </div>
+
+
+
 
     <div class="site-section bg-primary count-numbers">
       <div class="container">
