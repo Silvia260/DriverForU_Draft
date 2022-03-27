@@ -1,6 +1,10 @@
 {%extends "registration/base.html"%}
-{% load bootstrap3 %}
+{% load bootstrap4 %}
+{% load static %}
 {% block content %}
+
+<div class="bg">
+
 <div class="container">
   <div class="row">
     <!-- Empty div -->
@@ -9,18 +13,21 @@
       {% if form.errors %}
         <p> Some Information Might be Incorrect </p>
       {% endif %}
-      <div class="panel panel-default">
+      <div class="card" style="margin-top:10vh;">
 
-        <div class="panel-heading">
+        <div class="card-header">
           <h3 class="text-center">Sign Up</h3>
         </div>
-        <div class="panel-body">
+        <div class="card-body">
 
           <form  action="/accounts/register/" method="post">
             {% csrf_token %}
             {% bootstrap_form form %}
-            <div class="form-group">
+
+            <div class="form-group text-center">
               <input type="submit" class="btn btn-primary btn-sm" value="Sign Up">
+              <p>Already have an account? <a href="/accounts/login">Sign In</a></p>
+
             </div>
 
             <input type="hidden" name="next" value="{{next}}">
@@ -36,5 +43,45 @@
     <div class="col-md-4"></div>
   </div>
 </div>
+
+</div>
+
+<style>
+.text-muted{
+  display: none;
+}
+
+body, html {
+  height: 100%;
+  margin: 0;
+
+}
+.bg{
+  background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("{% static 'images/background.jpg' %}") fixed;
+  height: 100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.card{
+  background-color: rgba(0,0,0,0.7)
+}
+.card-header, .card-footer{ opacity: 1}
+h3{
+  font-weight: bold;
+  color: white;
+}
+p, label{
+  color:white;
+  font-size: 15px;
+}
+input{
+  text-align: center;
+}
+
+</style>
+
 
 {% endblock %}

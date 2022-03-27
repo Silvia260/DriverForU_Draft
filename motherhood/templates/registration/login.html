@@ -1,5 +1,5 @@
 {%extends "registration/base.html"%}
-{% load bootstrap3 %}
+{% load bootstrap4 %}
 {% load static %}
 {% block content %}
 
@@ -14,12 +14,12 @@
         <p> Password or Username is incorrect </p>
       {% endif %}
 
-      <div class="panel panel-default" style="margin-top:210px;">
+      <div class="card" style="margin-top:130px;">
 
-        <div class="panel-heading">
+        <div class="card-header">
           <h3 class="text-center">Sign In</h3>
         </div>
-        <div class="panel-body">
+        <div class="card-body">
 
           <form  action="/accounts/login/" method="post">
             {% csrf_token %}
@@ -27,6 +27,8 @@
 
             <div class="form-group text-center">
               <input type="submit" class="btn btn-primary btn-sm" value="Login">
+              <p>Don't have an account? <a href="/accounts/register">Sign Up</a></p>
+
             </div>
 
             <input type="hidden" name="next" value="{{next}}">
@@ -50,29 +52,29 @@
 body, html {
   height: 100%;
   margin: 0;
+
 }
 .bg{
-  background-image: url("{% static 'images/background.jpg' %}");
+  background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("{% static 'images/background.jpg' %}") fixed;
   height: 100%;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  background-color: rgba(0,0,0,0.9);
 }
 
-p, label,a{
+.card{
+  background-color: rgba(0,0,0,0.7)
+}
+.card-header, .card-footer{ opacity: 1}
+h3{
+  font-weight: bold;
+  color: white;
+}
+p, label{
   color:white;
   font-size: 15px;
 }
-h3{
-  color:white;
-}
-
-panel-default{
-  background-color: white;
-}
-
 input{
   text-align: center;
 }
