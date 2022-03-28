@@ -14,7 +14,7 @@ urlpatterns=[
     url(r'^testimonial',views.testimonial,name='testimonial'),
     url(r'^inquiry_received',views.inquiry_received,name='inquiry_received'),
     url(r'^search/',views.search_results,name='search_results'),
-
+    url(r'^book_nanny/(\d+)',views.book_nanny,name='book_nanny'),
 ]
 
 if settings.DEBUG:

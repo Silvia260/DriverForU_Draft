@@ -65,6 +65,16 @@ def inquiry_received(request):
 
     return render(request,'inquiry_received.html')
 
+def book_nanny(request, nanny_id):
+    nanny = Nanny.objects.get(id=nanny_id)
+
+    try:
+        nanny = Nanny.objects.get(id=nanny_id)
+    except:
+        raise ObjectDoesNotExist()
+
+    return render(request,"book_nanny.html",{"nanny":nanny})
+
 def search_results(request):
 
     if 'nanny' in request.GET and request.GET["nanny"] and 'skill' in request.GET and request.GET["skill"]:

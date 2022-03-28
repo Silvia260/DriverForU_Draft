@@ -41,14 +41,8 @@
 
               <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
                 <li><a href="{% url 'index' %}" class="active nav-link">Home</a></li>
-                <li class="has-children">
-                  <a href="{% url 'services' %}" class="nav-link">Services</a>
-                  <ul class="dropdown">
-                    <li><a href="#" class="nav-link">At Home Babysitting</a></li>
-                    <li><a href="#" class="nav-link">Nanny Services</a></li>
-                    <li><a href="{% url 'nannies' %}" class="nav-link">Meet Our Nannies</a></li>
-
-                  </ul>
+                <li>
+                  <a href="{% url 'nannies' %}" class="nav-link">Nannies</a>
                 </li>
                 <li><a href="{% url 'testimonial' %}" class="nav-link">Testimonials</a></li>
 
