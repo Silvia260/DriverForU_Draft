@@ -15,6 +15,9 @@ urlpatterns=[
     url(r'^inquiry_received',views.inquiry_received,name='inquiry_received'),
     url(r'^search/',views.search_results,name='search_results'),
     url(r'^book_nanny/(\d+)',views.book_nanny,name='book_nanny'),
+    url(r'^process-payment/', views.process_payment, name='process_payment'),
+    url(r'^payment-done/', views.payment_done, name='payment_done'),
+    url(r'^payment-cancelled/', views.payment_canceled, name='payment_cancelled'),
 ]
 
 if settings.DEBUG:

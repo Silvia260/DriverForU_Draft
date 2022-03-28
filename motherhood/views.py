@@ -5,6 +5,11 @@ from .models import pro_skills, Location, Nanny
 from .forms import ContactForm, FilterNannies
 from django.core.mail import send_mail, BadHeaderError
 
+from django.conf import settings
+from decimal import Decimal
+from paypal.standard.forms import PayPalPaymentsForm
+from django.views.decorators.csrf import csrf_exempt
+
 # Create your views here.
 def index(request):
     nannies = Nanny.objects.all()[:4]
@@ -90,3 +95,47 @@ def search_results(request):
     else:
         message = "You haven't searched for any term"
         return render(request,'filtered_nannies.html',{"message":message})
+
+
+#Paypal views
+def checkout(request):
+    if request.method == 'POST':
+        form = CheckoutForm(request.POST)
+        if form.is_valid():
+            cleaned_data = form.cleaned_data
+        #...
+        #...
+
+            cart.clear(request)
+
+            request.session['order_id'] = o.id
+            return redirect('process_payment')
+
+
+    else:
+        form = CheckoutForm()
+        return render(request, 'ecommerce_app/checkout.html', locals())
+
+def process_payment(request):
+    nanny = Nanny.objects.get(id=1)
+
+    paypal_dict = {
+        'business': settings.PAYPAL_RECEIVER_EMAIL,
+        'amount': '%.2f' % 2,
+        'item_name': 'Nanny',
+        'invoice': str("Total Amount: 400"),
+        'currency_code': 'USD',
+
+    }
+
+    form = PayPalPaymentsForm(initial=paypal_dict)
+    return render(request, 'ecommerce_app/process_payment.html', {'form': form})
+
+@csrf_exempt
+def payment_done(request):
+    return render(request, 'ecommerce_app/payment_done.html')
+
+
+@csrf_exempt
+def payment_canceled(request):
+    return render(request, 'ecommerce_app/payment_cancelled.html')
