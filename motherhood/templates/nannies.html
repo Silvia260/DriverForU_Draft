@@ -30,11 +30,76 @@
             <div class="row">
               <div class="col-lg-8 mb-5">
 
-                <form class="navbar-form" role="search" action="{% url 'search_results' %}">
+                <!-- <form class="navbar-form" role="search" action="{% url 'search_results' %}">
                   <div class="input-group">
                     <input type="text" class="form-control" placeholder="Search For Nanny" name="nanny">
                   </div>
+                </form> -->
+
+
+                <form class="navbar-form" role="search" action="{% url 'search_results' %}">
+
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="nanny" id="inlineRadio1" value="Eldoret">
+                      <label class="form-check-label" for="inlineRadio1">Eldoret</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="nanny" id="inlineRadio2" value="Kiambu">
+                      <label class="form-check-label" for="inlineRadio2">Kiambu</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="nanny" id="inlineRadio3" value="Mombasa">
+                      <label class="form-check-label" for="inlineRadio2">Mombasa</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="nanny" id="inlineRadio4" value="Nairobi">
+                      <label class="form-check-label" for="inlineRadio2">Nairobi</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="nanny" id="inlineRadio5" value="Nakuru">
+                      <label class="form-check-label" for="inlineRadio2">Nakuru</label>
+                    </div>
+
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox"  name="skill" value="First Aid and CPR" id="flexCheckDefault">
+                      <label class="form-check-label" for="flexCheckDefault">
+                        First Aid and CPR
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox"   name="skill" value="Light Cleaning" id="flexCheckChecked" checked>
+                      <label class="form-check-label" for="flexCheckChecked">
+                        Light Cleaning
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox"  name="skill" value="Tutoring" id="flexCheckChecked">
+                      <label class="form-check-label" for="flexCheckChecked">
+                        Tutoring
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox"  name="skill" value="Potty Training" id="flexCheckChecked">
+                      <label class="form-check-label" for="flexCheckChecked">
+                        Potty Training
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox"  name="skill" value="Changing Diapers" id="flexCheckChecked">
+                      <label class="form-check-label" for="flexCheckChecked">
+                        Changing Diapers
+                      </label>
+                    </div>
+
+                    <div class="input-group">
+                      <input type="submit" class="form-control" value="Search for Nanny">
+                    </div>
                 </form>
+
+
+
+
+
 
                 <!-- <form role="search" action="{% url 'search_results' %}">
 

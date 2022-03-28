@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse,Http404
 from django.contrib.auth.decorators import login_required
 from .models import pro_skills, Location, Nanny
-from .forms import ContactForm
+from .forms import ContactForm, FilterNannies
 from django.core.mail import send_mail, BadHeaderError
 
 # Create your views here.
@@ -66,14 +66,16 @@ def inquiry_received(request):
     return render(request,'inquiry_received.html')
 
 def search_results(request):
-    if 'nanny' in request.GET and request.GET["nanny"]:
+
+    if 'nanny' in request.GET and request.GET["nanny"] and 'skill' in request.GET and request.GET["skill"]:
         search_term = request.GET.get("nanny")
-        filtered_nannies = Nanny.filter_nannies(search_term)
-        message=f"{search_term}"
+        skill_search = request.GET.get("skill")
+        filtered_nannies = Nanny.filter_nannies(search_term, skill_search).distinct()
+        message=f"{search_term} and {skill_search}"
 
         print(filtered_nannies)
 
-        return render(request,'filtered_nannies.html',{"message":message,"nannies":filtered_nannies})
+        return render(request,'filtered_nannies.html',{"message":message,"filtered_nannies":filtered_nannies})
 
     else:
         message = "You haven't searched for any term"

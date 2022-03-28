@@ -1,4 +1,5 @@
 from django import forms
+from .models import Nanny
 
 #Create your forms here
 
@@ -8,3 +9,13 @@ class ContactForm(forms.Form):
     email_address = forms.EmailField(max_length = 150)
     # subject = forms.CharField(max_length =100)
     message = forms.CharField(widget = forms.Textarea, max_length = 2000)
+
+
+class FilterNannies(forms.Form):
+    class Meta:
+        model = Nanny
+        exclude = ['first_name', 'last_name', 'bio', 'image', 'phonenumber','featured','rate']
+        widgets = {
+        'pro_skills':forms.CheckboxSelectMultiple(),
+        'location':forms.CheckboxSelectMultiple(),
+        }

@@ -49,6 +49,6 @@ class Nanny(models.Model):
         return self.first_name
 
     @classmethod
-    def filter_nannies(cls,search_term):
-        nannies = cls.objects.filter(Q(location__location=search_term) | Q(pro_skills__pro_skills=search_term))
+    def filter_nannies(cls,search_term,skill_search):
+        nannies = cls.objects.filter(Q(location__location=search_term) | Q(pro_skills__pro_skills=skill_search))
         return nannies
