@@ -31,6 +31,22 @@ class Location(models.Model):
     def delete_location(cls,location):
         cls.objects.filter(location=location).delete()
 
+class Rate(models.Model):
+    rate = models.IntegerField()
+
+    def __str__(self):
+        return f"{self.rate}"
+
+    class Meta:
+        ordering = ['rate']
+
+    def save_rate(self):
+        self.save()
+
+    @classmethod
+    def delete_rate(cls,rate):
+        cls.objects.filter(rate=rate).delete()
+
 
 class Nanny(models.Model):
     first_name = models.CharField(max_length=60)
@@ -38,7 +54,8 @@ class Nanny(models.Model):
     age = models.IntegerField(default=0)
     location = models.ForeignKey(Location,on_delete=models.CASCADE)
     pro_skills = models.ManyToManyField(pro_skills)
-    rate = models.IntegerField(default=400)
+    rate = models.ForeignKey(Rate,on_delete=models.CASCADE)
+    min_hours = models.IntegerField(default=4)
     phonenumber = models.IntegerField()
     featured = models.BooleanField(default=False)
     bio = models.CharField(blank=True, max_length=200)
@@ -48,6 +65,6 @@ class Nanny(models.Model):
         return self.first_name
 
     @classmethod
-    def filter_nannies(cls,search_term,skill_search):
-        nannies = cls.objects.filter(Q(location__location=search_term) | Q(pro_skills__pro_skills=skill_search))
+    def filter_nannies(cls,search_term,skill_search,rate_search):
+        nannies = cls.objects.filter(Q(location__location=search_term) | Q(pro_skills__pro_skills=skill_search) | Q(rate__rate=rate_search))
         return nannies

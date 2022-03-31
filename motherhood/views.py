@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse,Http404
 from django.contrib.auth.decorators import login_required
-from .models import pro_skills, Location, Nanny
+from .models import pro_skills, Location, Nanny, Rate
 from .forms import ContactForm, FilterNannies
 from django.core.mail import send_mail, BadHeaderError
 
@@ -51,8 +51,6 @@ def profile(request):
 
     return render(request,'profile.html')
 
-
-
 def pricing(request):
     nannies = Nanny.objects.all()
 
@@ -70,23 +68,36 @@ def inquiry_received(request):
 
     return render(request,'inquiry_received.html')
 
+@login_required(login_url='/accounts/login')
 def book_nanny(request, nanny_id):
+    current_user = request.user
     nanny = Nanny.objects.get(id=nanny_id)
 
+    paypal_dict = {
+        'business': settings.PAYPAL_RECEIVER_EMAIL,
+        'amount': '%.2f' % ((nanny.rate.rate*nanny.min_hours)/116),
+        'item_name': nanny.first_name,
+        # 'invoice': (nanny.rate*10),
+        'currency_code': 'USD',
+
+    }
     try:
         nanny = Nanny.objects.get(id=nanny_id)
     except:
         raise ObjectDoesNotExist()
 
-    return render(request,"book_nanny.html",{"nanny":nanny})
+    form = PayPalPaymentsForm(initial=paypal_dict)
+
+    return render(request,"book_nanny.html",{"nanny":nanny, 'form':form})
 
 def search_results(request):
 
-    if 'nanny' in request.GET and request.GET["nanny"] and 'skill' in request.GET and request.GET["skill"]:
+    if 'nanny' in request.GET and request.GET["nanny"] and 'skill' in request.GET and request.GET["skill"] and 'rate' in request.GET and request.GET["rate"]:
         search_term = request.GET.get("nanny")
         skill_search = request.GET.get("skill")
-        filtered_nannies = Nanny.filter_nannies(search_term, skill_search).distinct()
-        message=f"{search_term} and {skill_search}"
+        rate_search = request.GET.get("rate")
+        filtered_nannies = Nanny.filter_nannies(search_term, skill_search, rate_search).distinct()
+        message=f"{search_term} and {skill_search}  and {rate_search}"
 
         print(filtered_nannies)
 
@@ -125,6 +136,12 @@ def process_payment(request):
         'item_name': 'Nanny',
         'invoice': str("Total Amount: 400"),
         'currency_code': 'USD',
+        'notify_url': 'http://{}{}'.format(host,
+                                           reverse('paypal-ipn')),
+        'return_url': 'http://{}{}'.format(host,
+                                           reverse('payment_done')),
+        'cancel_return': 'http://{}{}'.format(host,
+                                              reverse('payment_cancelled')),
 
     }
 
@@ -133,7 +150,7 @@ def process_payment(request):
 
 @csrf_exempt
 def payment_done(request):
-    return render(request, 'ecommerce_app/payment_done.html')
+    return render(request,'services.html')
 
 
 @csrf_exempt

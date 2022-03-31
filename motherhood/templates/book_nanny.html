@@ -34,15 +34,24 @@
               <p class="text-black"> <b>Age:</b> {{nanny.age}}</p>
               <p class="mb-4 text-black"> <b>Location:</b> {{nanny.location}}</p>
               <p class="mb-4 text-black"><b>Rate:</b> {{nanny.rate}}</p>
+              <p class="mb-4 text-black"><b>Minimum Hours:</b> {{nanny.min_hours}}</p>
+
               <p class="mb-4 text-black"><b>Professional Skills</b> <br>
                 {% for pro_skills in nanny.pro_skills.all %}
                   {{pro_skills}}<br>
                 {% endfor %}
               </p>
 
-              <div class="inner" style="margin:0 auto;">
-                <p><a href="/book_nanny/{{nanny.id}}" class="btn btn-primary">Book Nanny</a></p>
+              <div class=text-center>
+              <p class="text-center mb-4 text-black"><b>Book {{nanny.first_name}} As Your Nanny of Choice</b> <br>
+
+
+                {{ form.render }}
               </div>
+
+              <!-- <div class="inner" style="margin:0 auto;">
+                <p><a href="/book_nanny/{{nanny.id}}" class="btn btn-primary">Book Nanny</a></p>
+              </div> -->
 
 
             </div>
@@ -80,7 +89,7 @@
               <div class="col-lg-5">
                 <h2 class="footer-heading mb-4">Quick Links</h2>
                 <ul class="list-unstyled">
-                  <li><a href="{% url 'services' %}">Services</a></li>
+
                   <li><a href="{% url 'pricing' %}">Pricing</a></li>
                   <li><a href="{% url 'about' %}">About Us</a></li>
                 </ul>

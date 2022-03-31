@@ -27,7 +27,19 @@
 
         <div class="site-section">
           <div class="container">
-            <div class="row">
+
+            <div class="row mb-5 justify-content-center">
+                <div class="heading">
+                  <h2 class="text-black">Choose your Nanny</h2>
+                </div>
+            </div>
+
+            <div class="row mb-5 justify-content-center">
+              <p class="mb-4">Filter your requirements below to find your best pick.</p>
+            </div>
+
+            <div class="row mb-5 justify-content-center">
+
               <div class="col-lg-8 mb-5">
 
                 <!-- <form class="navbar-form" role="search" action="{% url 'search_results' %}">
@@ -38,6 +50,34 @@
 
 
                 <form class="navbar-form" role="search" action="{% url 'search_results' %}">
+
+                  <p class="text-center mb-4 text-black">Rate</p>
+
+                    <div class="text-center">
+
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="rate" id="inlineRadio1" value=400>
+                      <label class="form-check-label" for="inlineRadio1">400</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="rate" id="inlineRadio2" value=500>
+                      <label class="form-check-label" for="inlineRadio2">500</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="rate" id="inlineRadio3" value=600>
+                      <label class="form-check-label" for="inlineRadio2">600</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="rate" id="inlineRadio4" value=800>
+                      <label class="form-check-label" for="inlineRadio2">800</label>
+                    </div>
+
+                    </div>
+
+                    <br>
+                  <p class="text-center mb-4 text-black">Location</p>
+
+                    <div class="text-center">
 
                     <div class="form-check form-check-inline">
                       <input class="form-check-input" type="radio" name="nanny" id="inlineRadio1" value="Eldoret">
@@ -59,6 +99,14 @@
                       <input class="form-check-input" type="radio" name="nanny" id="inlineRadio5" value="Nakuru">
                       <label class="form-check-label" for="inlineRadio2">Nakuru</label>
                     </div>
+                    </div>
+                    <br><br>
+
+
+
+                    <p class="text-center mb-4 text-black">Professional Skills</p>
+
+                    <div class="text-center">
 
                     <div class="form-check">
                       <input class="form-check-input" type="checkbox"  name="skill" value="First Aid and CPR" id="flexCheckDefault">
@@ -90,6 +138,32 @@
                         Changing Diapers
                       </label>
                     </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox"  name="skill" value="Conflict Resolution" id="flexCheckChecked">
+                      <label class="form-check-label" for="flexCheckChecked">
+                        Conflict Resolution
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox"  name="skill" value="Bottle Feeding" id="flexCheckChecked">
+                      <label class="form-check-label" for="flexCheckChecked">
+                        Bottle Feeding
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox"  name="skill" value="Washing Machines" id="flexCheckChecked">
+                      <label class="form-check-label" for="flexCheckChecked">
+                        Washing Machines
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox"  name="skill" value="Food Prep" id="flexCheckChecked">
+                      <label class="form-check-label" for="flexCheckChecked">
+                        Food Prep
+                      </label>
+                    </div>
+
+                  </div>
 
                     <div class="input-group">
                       <input type="submit" class="form-control" value="Search for Nanny">
@@ -217,7 +291,7 @@
               <div class="col-lg-5">
                 <h2 class="footer-heading mb-4">Quick Links</h2>
                 <ul class="list-unstyled">
-                  <li><a href="{% url 'services' %}">Services</a></li>
+
                   <li><a href="{% url 'pricing' %}">Pricing</a></li>
                   <li><a href="{% url 'about' %}">About Us</a></li>
                 </ul>
