@@ -66,5 +66,5 @@ class Nanny(models.Model):
 
     @classmethod
     def filter_nannies(cls,search_term,skill_search,rate_search):
-        nannies = cls.objects.filter(Q(location__location=search_term) & Q(pro_skills__pro_skills=skill_search) & Q(rate__rate=rate_search))
+        nannies = cls.objects.filter(Q(location__location=search_term) & Q(pro_skills__pro_skills__iexact=skill_search) & Q(rate__rate=rate_search))
         return nannies
