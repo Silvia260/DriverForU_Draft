@@ -97,7 +97,7 @@ def search_results(request):
         skill_search = request.GET.get("skill")
         rate_search = request.GET.get("rate")
         filtered_nannies = Nanny.filter_nannies(search_term, skill_search, rate_search).distinct()
-        message=f"{search_term} and {skill_search}  and {rate_search}"
+        message=f"{search_term} and {skill_search}{skill_search}{skill_search} and {rate_search}"
 
         print(filtered_nannies)
 
