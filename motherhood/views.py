@@ -92,8 +92,8 @@ def book_nanny(request, nanny_id):
 
 def search_results(request):
 
-    if 'nanny' in request.GET and request.GET["nanny"] and 'skill' in request.GET and request.GET["skill"] and 'rate' in request.GET and request.GET["rate"]:
-        search_term = request.GET.get("nanny")
+    if 'location' in request.GET and request.GET["location"] and 'skill' in request.GET and request.GET["skill"] and 'rate' in request.GET and request.GET["rate"]:
+        search_term = request.GET.get("location")
         skill_search = request.GET.get("skill")
         rate_search = request.GET.get("rate")
         filtered_nannies = Nanny.filter_nannies(search_term, skill_search, rate_search).distinct()
@@ -151,7 +151,7 @@ def process_payment(request):
 
 @csrf_exempt
 def payment_done(request):
-    return render(request,'services.html')
+    return render(request,'ecommerce_app/payment_done.html')
 
 
 @csrf_exempt
