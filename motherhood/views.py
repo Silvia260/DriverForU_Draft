@@ -1,14 +1,15 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse,Http404
 from django.contrib.auth.decorators import login_required
-from .models import pro_skills, Location, Nanny, Rate
-from .forms import ContactForm, FilterNannies
+from .models import pro_skills, Location, Nanny, Rate, Report
+from .forms import ContactForm, FilterNannies, BookNanny
 from django.core.mail import send_mail, BadHeaderError
 
 from django.conf import settings
 from decimal import Decimal
 from paypal.standard.forms import PayPalPaymentsForm
 from django.views.decorators.csrf import csrf_exempt
+
 
 # Create your views here.
 def index(request):
@@ -69,9 +70,17 @@ def inquiry_received(request):
     return render(request,'inquiry_received.html')
 
 @login_required(login_url='/accounts/login')
+def order_history(request, client_id):
+    reports = Report.filter_reports(client_id)
+
+    print(reports)
+    return render(request,'orders.html',{"reports":reports})
+
+@login_required(login_url='/accounts/login')
 def book_nanny(request, nanny_id):
     current_user = request.user
     nanny = Nanny.objects.get(id=nanny_id)
+
 
     paypal_dict = {
         'business': settings.PAYPAL_RECEIVER_EMAIL,
@@ -80,6 +89,7 @@ def book_nanny(request, nanny_id):
         # 'invoice': (nanny.rate*10),
         'currency_code': 'USD',
 
+
     }
     try:
         nanny = Nanny.objects.get(id=nanny_id)
@@ -87,6 +97,11 @@ def book_nanny(request, nanny_id):
         raise ObjectDoesNotExist()
 
     form = PayPalPaymentsForm(initial=paypal_dict)
+
+
+    report_instance = Report.objects.create(payment_status="Completed",nanny_first_name=nanny.first_name,nanny_last_name=nanny.last_name,nanny_phonenumber=nanny.phonenumber,nanny_rate=str(nanny.rate),total_cost=(nanny.rate.rate*nanny.min_hours),client_id=current_user.id,client_first_name=current_user.first_name,client_last_name=current_user.last_name,booked_hours=nanny.min_hours)
+
+
 
     return render(request,"book_nanny.html",{"nanny":nanny, 'form':form})
 

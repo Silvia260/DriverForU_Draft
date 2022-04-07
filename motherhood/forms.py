@@ -1,5 +1,5 @@
 from django import forms
-from .models import Nanny
+from .models import Nanny, Report
 
 #Create your forms here
 
@@ -19,3 +19,8 @@ class FilterNannies(forms.Form):
         'pro_skills':forms.CheckboxSelectMultiple(),
         'location':forms.CheckboxSelectMultiple(),
         }
+
+class BookNanny(forms.Form):
+    class Meta:
+        model = Report
+        exclude = ['transaction_id', 'nanny_first_name', 'nanny_last_name', 'nanny_phonenumber', 'nanny_rate','client_id','client_first_name','client_last_name','payment_status','payment_date']
