@@ -14,7 +14,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-6 align-self-center">
-            <h1 class="heading mb-3">Upscale Motherhood Program </h1>
+            <h1 class="heading mb-3">DriverForU </h1>
             <p class="lead text-white mb-5">Trusted, Experienced and Professional Babysitting in Kenya</p>
             <p><a href="contact.html" class="btn btn-primary">Get In Touch</a></p>
           </div>
@@ -63,26 +63,26 @@
         <div class="row mb-5 justify-content-center">
           <div class="col-12 text-center">
             <div class="heading">
-              <h2 class="text-black">Featured Nannies</h2>
+              <h2 class="text-black">Featured Drivers</h2>
             </div>
           </div>
         </div>
 
         <div class="row">
 
-          {%for nanny in nannies %}
+          {%for driver in drivers %}
 
           <div class="col-6 col-sm-6 col-md-6 mb-4 mb-lg-0 col-lg-3" >
-            <a href="#" class="d-block"  data-toggle="modal" data-target="#nanny-{{nanny.id}}">
+            <a href="#" class="d-block"  data-toggle="modal" data-target="#driver-{{driver.id}}">
 
             <div class="service">
               <!-- <a href="#" class="d-block">
 
               </a> -->
-              <img src="{{nanny.image.url}}" alt="Image" class="img-fluid">
+              <img src="{{driver.image.url}}" alt="Image" class="img-fluid">
               <div class="service-inner">
-                <h3>{{nanny.first_name}} {{nanny.last_name}}</h3>
-                <p>{{nanny.bio}}</p>
+                <h3>{{driver.first_name}} {{driver.last_name}}</h3>
+                <p>{{driver.bio}}</p>
 
               </div>
             </div>
@@ -92,19 +92,19 @@
 
 
           <!-- Modal  -->
-            <div class="modal fade" id="nanny-{{nanny.id}}" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+            <div class="modal fade" id="driver-{{driver.id}}" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-body" style="padding-top: 0em;">
                     <div class="row">
                         <div class="service">
-                          <a href="#" class="d-block"><img src="{{nanny.image.url}}" alt="Image" class="img-fluid"></a>
+                          <a href="#" class="d-block"><img src="{{driver.image.url}}" alt="Image" class="img-fluid"></a>
                           <div class="service-inner">
-                            <h3>{{nanny.first_name}} {{nanny.last_name}}</h3>
-                            <h6>Age: {{nanny.age}}</h6>
-                            <h6>Location: {{nanny.location}}</h6>
-                            <h6>Rate: {{nanny.rate}} ksh/hour</h6>
-                            <h6>Professional Skills: {% for pro_skills in nanny.pro_skills.all %}
+                            <h3>{{driver.first_name}} {{driver.last_name}}</h3>
+                            <h6>Age: {{driver.age}}</h6>
+                            <h6>Location: {{driver.location}}</h6>
+                            <h6>Rate: {{driver.rate}} ksh/hour</h6>
+                            <h6>Professional Skills: {% for pro_skills in driver.pro_skills.all %}
                                 {{pro_skills}},
                               {% endfor %}
                             </h6>
@@ -113,7 +113,7 @@
                       </div>
                       <div class="modal-footer">
                         <div class="inner" style="margin:0 auto;">
-                          <p><a href="/book_nanny/{{nanny.id}}" class="btn btn-primary">Book Nanny</a></p>
+                          <p><a href="/book_driver/{{driver.id}}" class="btn btn-primary">Book Driver</a></p>
                         </div>
 
                       </div>

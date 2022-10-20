@@ -1,5 +1,5 @@
 from django import forms
-from .models import Nanny, Report
+from .models import Driver, Report
 
 #Create your forms here
 
@@ -11,16 +11,16 @@ class ContactForm(forms.Form):
     message = forms.CharField(widget = forms.Textarea, max_length = 2000)
 
 
-class FilterNannies(forms.Form):
+class FilterDrivers(forms.Form):
     class Meta:
-        model = Nanny
+        model = Driver
         exclude = ['first_name', 'last_name', 'bio', 'image', 'phonenumber','featured','rate']
         widgets = {
         'pro_skills':forms.CheckboxSelectMultiple(),
         'location':forms.CheckboxSelectMultiple(),
         }
 
-class BookNanny(forms.Form):
+class BookDriver(forms.Form):
     class Meta:
         model = Report
-        exclude = ['transaction_id', 'nanny_first_name', 'nanny_last_name', 'nanny_phonenumber', 'nanny_rate','client_id','client_first_name','client_last_name','payment_status','payment_date']
+        exclude = ['transaction_id', 'driver_first_name', 'driver_last_name', 'driver_phonenumber', 'driver_rate','client_id','client_first_name','client_last_name','payment_status','payment_date']

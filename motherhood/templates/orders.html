@@ -32,9 +32,9 @@
             <thead>
               <tr>
                 <th scope="col">Transaction ID</th>
-                <th scope="col">Nanny Name</th>
-                <th scope="col">Nanny Phone Number</th>
-                <th scope="col">Nanny Rate (KSH)</th>
+                <th scope="col">Driver Name</th>
+                <th scope="col">Driver Phone Number</th>
+                <th scope="col">Driver Rate (KSH)</th>
                 <th scope="col">Booked Hours</th>
                 <th scope="col">Total Cost (KSH)</th>
                 <th scope="col">Payment Status</th>
@@ -47,9 +47,9 @@
               {% for report in reports %}
               <tr>
                 <td>{{report.transaction_id}}</td>
-                <td>{{report.nanny_first_name}} {{report.nanny_last_name}}</td>
-                <td>0{{report.nanny_phonenumber}}</td>
-                <td>{{report.nanny_rate}}</td>
+                <td>{{report.driver_first_name}} {{report.driver_last_name}}</td>
+                <td>0{{report.driver_phonenumber}}</td>
+                <td>{{report.driver_rate}}</td>
                 <td>{{report.booked_hours}}</td>
                 <td>{{report.total_cost}}</td>
                 <td>{{report.payment_status}}</td>

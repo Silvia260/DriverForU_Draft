@@ -50,7 +50,7 @@ class Rate(models.Model):
         cls.objects.filter(rate=rate).delete()
 
 
-class Nanny(models.Model):
+class Driver(models.Model):
     first_name = models.CharField(max_length=60)
     last_name = models.CharField(max_length=60)
     age = models.IntegerField(default=0)
@@ -67,17 +67,17 @@ class Nanny(models.Model):
         return self.first_name
 
     @classmethod
-    def filter_nannies(cls,search_term,skill_search,rate_search):
-        nannies = cls.objects.filter(Q(location__location=search_term) & Q(pro_skills__pro_skills__iexact=skill_search) & Q(rate__rate=rate_search))
-        return nannies
+    def filter_drivers(cls,search_term,skill_search,rate_search):
+        drivers = cls.objects.filter(Q(location__location=search_term) & Q(pro_skills__pro_skills__iexact=skill_search) & Q(rate__rate=rate_search))
+        return drivers
 
 
 class Report(models.Model):
     transaction_id = models.UUIDField(default=uuid.uuid4, unique=True, db_index=True, editable=False)
-    nanny_first_name = models.CharField(max_length=60)
-    nanny_last_name = models.CharField(max_length=60)
-    nanny_phonenumber = models.IntegerField()
-    nanny_rate = models.IntegerField()
+    driver_first_name = models.CharField(max_length=60)
+    driver_last_name = models.CharField(max_length=60)
+    driver_phonenumber = models.IntegerField()
+    driver_rate = models.IntegerField()
     client_id = models.IntegerField()
     client_first_name = models.CharField(max_length=60)
     client_last_name = models.CharField(max_length=60)

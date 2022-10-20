@@ -1,8 +1,8 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse,Http404
 from django.contrib.auth.decorators import login_required
-from .models import pro_skills, Location, Nanny, Rate, Report
-from .forms import ContactForm, FilterNannies, BookNanny
+from .models import pro_skills, Location, Driver, Rate, Report
+from .forms import ContactForm, FilterDrivers, BookDriver
 from django.core.mail import send_mail, BadHeaderError
 
 from django.conf import settings
@@ -13,9 +13,9 @@ from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 def index(request):
-    nannies = Nanny.objects.all()[:4]
+    drivers = Driver.objects.all()[:4]
 
-    return render(request,'index.html',{"nannies":nannies})
+    return render(request,'index.html',{"drivers":drivers})
 
 def about(request):
 
@@ -43,19 +43,19 @@ def contact(request):
 
     return render(request,'contact.html',{'form':form})
 
-def nannies(request):
-    nannies = Nanny.objects.all()
+def drivers(request):
+    drivers = Driver.objects.all()
 
-    return render(request,'nannies.html',{"nannies":nannies})
+    return render(request,'drivers.html',{"drivers":drivers})
 
 def profile(request):
 
     return render(request,'profile.html')
 
 def pricing(request):
-    nannies = Nanny.objects.all()
+    drivers = Driver.objects.all()
 
-    return render(request,'pricing.html',{"nannies":nannies})
+    return render(request,'pricing.html',{"drivers":drivers})
 
 def services(request):
 
@@ -77,33 +77,33 @@ def order_history(request, client_id):
     return render(request,'orders.html',{"reports":reports})
 
 @login_required(login_url='/accounts/login')
-def book_nanny(request, nanny_id):
+def book_driver(request, driver_id):
     current_user = request.user
-    nanny = Nanny.objects.get(id=nanny_id)
+    driver = Driver.objects.get(id=driver_id)
 
 
     paypal_dict = {
         'business': settings.PAYPAL_RECEIVER_EMAIL,
-        'amount': '%.2f' % ((nanny.rate.rate*nanny.min_hours)/116),
-        'item_name': nanny.first_name,
-        # 'invoice': (nanny.rate*10),
+        'amount': '%.2f' % ((driver.rate.rate*driver.min_hours)/116),
+        'item_name': driver.first_name,
+        # 'invoice': (driver.rate*10),
         'currency_code': 'USD',
 
 
     }
     try:
-        nanny = Nanny.objects.get(id=nanny_id)
+        driver = Driver.objects.get(id=driver_id)
     except:
         raise ObjectDoesNotExist()
 
     form = PayPalPaymentsForm(initial=paypal_dict)
 
 
-    report_instance = Report.objects.create(payment_status="Completed",nanny_first_name=nanny.first_name,nanny_last_name=nanny.last_name,nanny_phonenumber=nanny.phonenumber,nanny_rate=str(nanny.rate),total_cost=(nanny.rate.rate*nanny.min_hours),client_id=current_user.id,client_first_name=current_user.first_name,client_last_name=current_user.last_name,booked_hours=nanny.min_hours)
+    report_instance = Report.objects.create(payment_status="Completed",driver_first_name=driver.first_name,driver_last_name=driver.last_name,driver_phonenumber=driver.phonenumber,driver_rate=str(driver.rate),total_cost=(driver.rate.rate*driver.min_hours),client_id=current_user.id,client_first_name=current_user.first_name,client_last_name=current_user.last_name,booked_hours=driver.min_hours)
 
 
 
-    return render(request,"book_nanny.html",{"nanny":nanny, 'form':form})
+    return render(request,"book_driver.html",{"driver":driver, 'form':form})
 
 def search_results(request):
 
@@ -111,17 +111,17 @@ def search_results(request):
         search_term = request.GET.get("location")
         skill_search = request.GET.get("skill")
         rate_search = request.GET.get("rate")
-        filtered_nannies = Nanny.filter_nannies(search_term, skill_search, rate_search).distinct()
+        filtered_drivers = Driver.filter_drivers(search_term, skill_search, rate_search).distinct()
         message=f"{search_term} and {skill_search} and {rate_search}"
 
-        print(filtered_nannies)
+        print(filtered_drivers)
         print(skill_search)
 
-        return render(request,'filtered_nannies.html',{"message":message,"filtered_nannies":filtered_nannies})
+        return render(request,'filtered_drivers.html',{"message":message,"filtered_drivers":filtered_drivers})
 
     else:
         message = "You haven't searched for any term"
-        return render(request,'filtered_nannies.html',{"message":message})
+        return render(request,'filtered_drivers.html',{"message":message})
 
 
 #Paypal views
@@ -144,12 +144,12 @@ def checkout(request):
         return render(request, 'ecommerce_app/checkout.html', locals())
 
 def process_payment(request):
-    nanny = Nanny.objects.get(id=1)
+    driver = Driver.objects.get(id=1)
 
     paypal_dict = {
         'business': settings.PAYPAL_RECEIVER_EMAIL,
         'amount': '%.2f' % 2,
-        'item_name': 'Nanny',
+        'item_name': 'Driver',
         'invoice': str("Total Amount: 400"),
         'currency_code': 'USD',
         'notify_url': 'http://{}{}'.format(host,

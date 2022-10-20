@@ -26,30 +26,30 @@
     <div class="site-section">
       <div class="container">
         <div class="row">
-          {% for nanny in nannies %}
+          {% for driver in drivers %}
           <div class="col-6 col-sm-6 col-md-6 mb-4 mb-lg-0 col-lg-3">
             <div class="service">
-              <a href="#" class="d-block"  data-toggle="modal" data-target="#nanny"><img src="{{nanny.image.url}}" alt="Image" class="img-fluid"></a>
+              <a href="#" class="d-block"  data-toggle="modal" data-target="#driver"><img src="{{driver.image.url}}" alt="Image" class="img-fluid"></a>
               <div class="service-inner">
-                <h3>{{nanny.first_name}} {{nanny.last_name}}</h3>
+                <h3>{{driver.first_name}} {{driver.last_name}}</h3>
                 <p></p>
               </div>
             </div>
           </div>
 
           <!-- Modal  -->
-            <div class="modal fade" id="nanny" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+            <div class="modal fade" id="driver" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-body" style="padding-top: 0em;">
                     <div class="row">
                         <div class="service">
-                          <a href="#" class="d-block"><img src="{{nanny.image.url}}" alt="Image" class="img-fluid"></a>
+                          <a href="#" class="d-block"><img src="{{driver.image.url}}" alt="Image" class="img-fluid"></a>
                           <div class="service-inner">
-                            <h3>{{nanny.first_name}} {{nanny.last_name}}</h3>
-                            <p>Age: {{nanny.age}}</p>
-                            <p>Location: {{nanny.location}}</p>
-                            <p>Rate: {{nanny.rate}}ksh/hour</p>
+                            <h3>{{driver.first_name}} {{driver.last_name}}</h3>
+                            <p>Age: {{driver.age}}</p>
+                            <p>Location: {{driver.location}}</p>
+                            <p>Rate: {{driver.rate}}ksh/hour</p>
 
                           </div>
                       </div>
